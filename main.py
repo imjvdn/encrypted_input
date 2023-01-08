@@ -1,4 +1,6 @@
 def caesar_cipher(text, shift):
+    if not isinstance(shift, int):
+        return "Error: shift value must be an integer"
     encrypted_text = ""
     for ch in text:
         if ch.isalpha():
@@ -10,9 +12,12 @@ def caesar_cipher(text, shift):
 
 text = input("Enter some text to encrypt: ")
 
-# Hardcode the shift value to 3
-shift = 3
+try:
+    shift = int(input("Enter a shift value (an integer): "))
+except ValueError:
+    print("Error: shift value must be an integer")
+    shift = None
 
-encrypted_text = caesar_cipher(text, shift)
-
-print(f"Encrypted text: {encrypted_text}")
+if shift is not None:
+    encrypted_text = caesar_cipher(text, shift)
+    print(f"Encrypted text: {encrypted_text}")
